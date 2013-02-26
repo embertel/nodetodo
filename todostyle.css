@@ -1,0 +1,38 @@
+body {
+	font-family: "Arial Narrow", Arial, sans-serif;
+	line-height: 1.15;	color: #232323;
+	background-color: #232323;
+	height: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+h1 {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-weight: lighter;
+}
+h2 {
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+	font-weight: lighter;
+	font-size: 1.25em;
+	margin: 0;
+	padding: 0;
+}
+ul {
+	list-style: none;
+	font-style: italic;
+}
+a:link, a:visited {
+	text-decoration: none;
+	color: #892c0a;
+}
+a:hover, a:active {
+	text-decoration: none;
+	color: #232323;
+}
+#listAndSubmit {
+	background-color: #d3d3d3;
+	margin: 0 auto;
+	width: 325px;
+	padding: 20px;
+	text-align: left;
+}
