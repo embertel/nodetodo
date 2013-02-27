@@ -6,10 +6,19 @@ function start(response) {
     // generates main page with todo list and submission form.
     console.log("Request handler 'start' was called.");
 
+    var HOST, USERNAME, PASSWORD;
+    var DATABASE;
+
+    var connect_string_split = process.env.CLEARDB_DATABASE_URL.split(":");
+    USERNAME = connect_string_split[1].split("//")[1];
+    PASSWORD = connect_string_split[2].split("@")[0];
+    HOST = connect_string_split[2].split("@")[1].split("/")[0];
+    //DATABASE = connect_string_split[2].split("@")[1].split("/")[1].split("?")[0];
+
     var connection = mysql.createConnection({
-    host     : 'localhost',
-    user     : 'root',
-    password : 'root'
+    host     : HOST,
+    user     : USERNAME,
+    password : PASSWORD
     });
 
     // create database if it does not already exist
