@@ -41,7 +41,8 @@ function start(response) {
             '<head>'+
             '<meta http-equiv="Content-Type" '+
             'content="text/html; charset=UTF-8" />'+
-            '<link rel="stylesheet" type="text/css" href="todostyle.css"/>' +
+            // until I can get Heroku to compile a stylesheet, this will have to be remote...
+            '<link rel="stylesheet" type="text/css" href="http://www.emilybertelson.com/todostyle.css"/>' +
             '<title>nodetodo</title>'+
             '</head>'+
             '<body>' +
