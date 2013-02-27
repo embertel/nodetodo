@@ -6,27 +6,27 @@ function start(response) {
     // generates main page with todo list and submission form.
     console.log("Request handler 'start' was called.");
 
-    var HOST, USERNAME, PASSWORD;
-    var DATABASE;
+    var HOST, USERNAME, PASSWORD, DATABASE;
 
     var connect_string_split = process.env.CLEARDB_DATABASE_URL.split(":");
     USERNAME = connect_string_split[1].split("//")[1];
     PASSWORD = connect_string_split[2].split("@")[0];
     HOST = connect_string_split[2].split("@")[1].split("/")[0];
-    //DATABASE = connect_string_split[2].split("@")[1].split("/")[1].split("?")[0];
+    DATABASE = connect_string_split[2].split("@")[1].split("/")[1].split("?")[0];
 
     var connection = mysql.createConnection({
     host     : HOST,
     user     : USERNAME,
     password : PASSWORD
+    database : DATABASE
     });
 
     // create database if it does not already exist
-    var query = connection.query('CREATE DATABASE IF NOT EXISTS db01', function(err) {
-        if (err) { throw err; }
-    });
-    console.log('database db01 is created.');
-    query = connection.query('USE db01');
+    //var query = connection.query('CREATE DATABASE IF NOT EXISTS db01', function(err) {
+    //    if (err) { throw err; }
+    //});
+    //console.log('database db01 is created.');
+    //query = connection.query('USE db01');
 
     // create table
     var sql = ""+
