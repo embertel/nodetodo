@@ -137,21 +137,18 @@ function clearTable(response) {
     database : DATABASE
     });
 
-    // create table
     var sql = "DROP TABLE IF EXISTS tb01";
 
     query = connection.query(sql, function(err) {
-    if (err) { throw err; }
+        if (err) { throw err; }
     });
-    console.log('Dropped tb01.');
 
+    console.log('Dropped tb01.');
+    connection.end();
     response.writeHead(200, {"Content-Type": "text/html"});
     response.write("Table deleted.");
     response.end();
-            }
-        }
-    );
-    connection.end();
+
 }
 
 exports.start = start;
