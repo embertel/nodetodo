@@ -4,16 +4,34 @@ var querystring = require("querystring"),
 
 function start(response) {
     // generates main page with todo list and submission form.
-    // console.log("Request handler 'start' was called.");
+    console.log("Request handler 'start' was called.");
 
     var connection = mysql.createConnection({
     host     : 'localhost',
     user     : 'root',
-    password : 'root',
-    database : 'db01'
+    password : 'root'
     });
+
+    // create database if it does not already exist
+    var query = connection.query('CREATE DATABASE IF NOT EXISTS db01', function(err) {
+        if (err) { throw err; }
+    });
+    console.log('database db01 is created.');
+    query = connection.query('USE db01');
+
+    // create table
+    var sql = ""+
+    "CREATE TABLE IF NOT EXISTS tb01("+
+    " ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,"+
+    " actionItem char(140)"+
+    ");";
+    query = connection.query(sql, function(err) {
+    if (err) { throw err; }
+    });
+    console.log('table tb01 is created.');
+
     var todoList;
-    var query = connection.query('SELECT * FROM tb01',
+    query = connection.query('SELECT * FROM tb01',
         function(err, result, fields) {
         if (err) throw err;
         else {
@@ -22,7 +40,7 @@ function start(response) {
             '<meta http-equiv="Content-Type" '+
             'content="text/html; charset=UTF-8" />'+
             '<link rel="stylesheet" type="text/css" href="todostyle.css"/>' +
-            '<title>What\'s to do?</title>'+
+            '<title>nodetodo</title>'+
             '</head>'+
             '<body>' +
             '<div id="listAndSubmit">'+
@@ -57,7 +75,7 @@ function start(response) {
 
 function addTask(response, request) {
     // handles POST data submission
-    // console.log("Request handler 'addTask' was called.");
+    console.log("Request handler 'addTask' was called.");
     if(request.method == 'POST') {
         console.log("Method " + request.method);
         request.on('data', function(chunk) {
@@ -72,11 +90,10 @@ function addTask(response, request) {
                 database : 'db01'
             });
 
-            // TODO: protect against sql injection attacks
-            var query = connection.query('INSERT INTO tb01(date, actionItem) VALUES ("2013-02-21","'+ fullBody +'")',
+            // TODO: look into security issues (sql injection attacks?)
+            var query = connection.query('INSERT INTO tb01(actionItem) VALUES ("'+ fullBody +'")',
             function(err, result, fields) {
                 if (err) throw err;
-                // else console.log(result);
             });
             connection.end();
         });
