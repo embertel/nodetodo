@@ -1,0 +1,13 @@
+{
+  "name": "nodetodo",
+  "version": "0.0.1",
+  "dependencies": {
+    "querystring": "0.1.0",
+    "mysql": "2.0.0-alpha7"
+
+  },
+  "engines": {
+    "node": "0.8.x",
+    "npm": "1.1.x"
+  }
+}
