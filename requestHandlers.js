@@ -21,13 +21,6 @@ function start(response) {
     database : DATABASE
     });
 
-    // create database if it does not already exist
-    //var query = connection.query('CREATE DATABASE IF NOT EXISTS db01', function(err) {
-    //    if (err) { throw err; }
-    //});
-    //console.log('database db01 is created.');
-    //query = connection.query('USE db01');
-
     // create table
     var sql = ""+
     "CREATE TABLE IF NOT EXISTS tb01("+
@@ -92,11 +85,19 @@ function addTask(response, request) {
             var qs = new QueryString(chunk.toString());
             var fullBody = qs.value('task');
 
+            var HOST, USERNAME, PASSWORD, DATABASE;
+
+            var connect_string_split = process.env.CLEARDB_DATABASE_URL.split(":");
+            USERNAME = connect_string_split[1].split("//")[1];
+            PASSWORD = connect_string_split[2].split("@")[0];
+            HOST = connect_string_split[2].split("@")[1].split("/")[0];
+            DATABASE = connect_string_split[2].split("@")[1].split("/")[1].split("?")[0];
+
             var connection = mysql.createConnection({
-                host     : 'localhost',
-                user     : 'root',
-                password : 'root',
-                database : 'db01'
+                host     : HOST,
+                user     : USERNAME,
+                password : PASSWORD,
+                database : DATABASE
             });
 
             // TODO: look into security issues (sql injection attacks?)
