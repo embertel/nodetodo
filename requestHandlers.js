@@ -17,7 +17,7 @@ function start(response) {
     var connection = mysql.createConnection({
     host     : HOST,
     user     : USERNAME,
-    password : PASSWORD
+    password : PASSWORD,
     database : DATABASE
     });
 
