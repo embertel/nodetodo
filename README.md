@@ -1,4 +1,5 @@
 [![Stories in Ready](http://badge.waffle.io/embertel/nodetodo.png)](http://waffle.io/embertel/nodetodo)  
+[![Stories in Ready](http://badge.waffle.io/embertel/nodetodo.png)](http://waffle.io/embertel/nodetodo)  
 nodetodo
 ========
 
